@@ -1,0 +1,49 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Rover Control Panel",
+        "description": "Backend server for rover control panel.",
+        "version": "0.1"
+    },
+    "servers": [],
+    "basePath": "/ctrl",
+    "schemes": ["http", "https"],
+    "paths": {
+        "/drive/joystick": {
+            "summary": "",
+            "description": "Drive the rover using a joystick.",
+            "post": {
+                "operationId": "joystick_drive",
+                "x-swagger-router-controller": "swagger_server.controllers.joystick",
+                "responses": {
+                    "200": {
+                        "description": "Successfully recieved joystick data."
+                    }
+                },
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "joystick",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "angle": {
+                                    "description": "The angle of the joystick, in radians",
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "magnitude": {
+                                    "description": "The displacement of the joystick, in [0.0, 1.0].",
+                                    "type": "number",
+                                    "format": "float"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
