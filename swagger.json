@@ -44,6 +44,19 @@
                     }
                 ]
             }
+        },
+        "/kill": {
+            "summary": "Soft kill the rover.",
+            "description": "Stop sending commands to motors.",
+            "post": {
+                "operationId": "kill_rover",
+                "x-swagger-router-controller": "swagger_server.controllers.kill_rover",
+                "responses": {
+                    "200": {
+                        "description": "Dispatched kill message."
+                    }
+                }
+            }
         }
     }
 }
