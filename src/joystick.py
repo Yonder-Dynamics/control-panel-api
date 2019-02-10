@@ -4,9 +4,6 @@ import math
 import redis
 import json
 
-from swagger_server.models.joystick import Joystick  # noqa: E501
-from swagger_server import util
-
 class Motor:
     def __init__(self, id, x, y, maxSpeed, isFlipped):
         self.id = id
@@ -59,6 +56,15 @@ def make_msg(r_stick_x, r_stick_y):
     cmd["type"] = "drive"
     cmd["data"] = speeds
     return cmd
+
+class Joystick:
+    def __init__(self, angle, magnitude):
+        self.angle = angle
+        self.magnitude = magnitude
+
+    @staticmethod
+    def from_dict(dct):
+        return Joystick(dct["angle"], dct["magnitude"])
 
 client = redis.StrictRedis(host="rover-core")
 

@@ -1,0 +1,40 @@
+swagger: '2.0'
+info:
+  title: Rover Control Panel API
+  version: "0.1"
+  description: API for rover frontend
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /ping:
+    get:
+      operationId: main.ping
+      summary: Basic endpoint for connectivity testing
+      produces: ["text/basic"]
+      responses:
+        200:
+          description: Pong the ping
+  /drive/joystick:
+    post:
+      operationId: joystick.joystick_drive
+      summary: Endpoint for sending joystick position information
+      responses:
+        200:
+          description: Joystick data received
+      parameters:
+        - name: joystick
+          required: true
+          in: body
+          schema:
+            type: object
+            properties:
+              angle:
+                description: The angle of the joystick
+                type: number
+                format: float
+              magnitude:
+                description: The displacement of the joystick
+                type: number
+                format: float

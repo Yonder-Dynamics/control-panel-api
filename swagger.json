@@ -9,12 +9,24 @@
     "basePath": "/ctrl",
     "schemes": ["http", "https"],
     "paths": {
+        "/etc/hello": {
+            "summary": "Ping endpoint for connectivity testing.",
+            "description": "",
+            "get": {
+                "operationId": "main.hello",
+                "produces": ["text/html"],
+                "responses": {
+                    "200": {
+                        "description": "This should always work!"
+                    }
+                }
+            }
+        },
         "/drive/joystick": {
             "summary": "",
             "description": "Drive the rover using a joystick.",
             "post": {
                 "operationId": "joystick_drive",
-                "x-swagger-router-controller": "swagger_server.controllers.joystick",
                 "responses": {
                     "200": {
                         "description": "Successfully recieved joystick data."
@@ -50,7 +62,6 @@
             "description": "Stop sending commands to motors.",
             "post": {
                 "operationId": "kill_rover",
-                "x-swagger-router-controller": "swagger_server.controllers.kill_rover",
                 "responses": {
                     "200": {
                         "description": "Dispatched kill message."
